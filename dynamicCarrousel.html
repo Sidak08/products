@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+  <style>
+    * {
+      padding: 0px;
+      margin: 0%;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .slider {
+      display: flex;
+      align-items: top;
+      width: 100%;
+    }
+
+    .slider-content {
+      display: flex;
+      overflow-x: scroll;
+    }
+
+    .product {
+      margin: 0 10px;
+      background-color: #ffffff20;
+      backdrop-filter: blur(48px);
+      -webkit-backdrop-filter: blur(48px);
+      box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.496);
+
+      border-radius: 15px;
+      width: 200px;
+      margin-bottom: 11px;
+    }
+
+    .text {
+      color: aqua;
+      text-align: center;
+      height: 60px;
+    }
+
+    button {
+      all: unset;
+    }
+
+    button:active {
+      background-color: #ffffff10;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+
+    .text h3 {
+      color: aliceblue;
+      padding-top: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .text h4 {
+      padding: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .product img {
+      width: 100%;
+      width: 200px;
+      height: 220px;
+      border-radius: 15px;
+
+    }
+
+    .arrow {
+      cursor: pointer;
+      width: 100px;
+      height: 280px;
+      border-radius: 15px;
+      background-color: #00000054;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+      color: antiquewhite;
+      font-size: 32px;
+      background-color: rgba(0, 0, 0, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 600px) {
+      .product {
+        height: 200px;
+        width: 150px;
+      }
+
+      .product img {
+        height: 150px;
+        width: 150px;
+      }
+
+      .text {
+        font-size: 13px;
+      }
+
+      .arrow {
+        display: none;
+      }
+
+    }
+
+    .slider-content {
+      overflow-x: scroll;
+      -ms-overflow-style: none;
+      /* for Internet Explorer and Edge */
+      scrollbar-width: none;
+      /* for Firefox */
+    }
+
+    .slider-content::-webkit-scrollbar {
+      display: none;
+      /* for Chrome, Safari, and Opera */
+    }
+
+    .slider-content {
+      scroll-snap-type: x mandatory;
+    }
+
+    .product {
+      scroll-snap-align: center;
+    }
+
+    .slider-content {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slider">
+    <button class="arrow left">&lt;</button>
+    <div class="slider-content">
+    </div>
+    <button class="arrow right">&gt;</button>
+  </div>
+  <script src="https://assets.zyrosite.com/YZ9MxPwN40Hxl037/allproducts-ALp8aXrrxWuba8pR.js"></script>
+  <script defer>
+    let products = Womensproducts;
+    const sliderContent = document.querySelector('.slider-content');
+    products.forEach((product) => {
+      const productDiv = document.createElement("div");
+      productDiv.classList.add("product");
+
+      const productImage = document.createElement("img");
+      productImage.src = product.imageSrc;
+
+      const productLink = document.createElement("a");
+      productLink.href = product.href;
+      productLink.target = "_blank";
+      productLink.appendChild(productImage);
+
+      const productText = document.createElement("div");
+      productText.classList.add("text");
+
+      const productName = document.createElement("h3");
+      productName.textContent = product.name;
+
+      const productPrice = document.createElement("h4");
+      productPrice.textContent = product.price;
+
+      productText.appendChild(productName);
+      productText.appendChild(productPrice);
+
+      productDiv.appendChild(productLink);
+      productDiv.appendChild(productText);
+
+      sliderContent.appendChild(productDiv);
+        const leftArrow = document.querySelector('.arrow.left');
+        const rightArrow = document.querySelector('.arrow.right');
+
+        leftArrow.addEventListener('click', () => {
+            sliderContent.scrollLeft -= 200;
+        });
+
+        rightArrow.addEventListener('click', () => {
+            sliderContent.scrollLeft += 200;
+        });
+
+        let startX;
+        let scrollLeft;
+
+        sliderContent.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX;
+            scrollLeft = sliderContent.scrollLeft;
+        });
+
+        sliderContent.addEventListener('touchmove', (e) => {
+            const x = e.touches[0].pageX;
+            const walk = (x - startX) * 2;
+            sliderContent.scrollLeft = scrollLeft - walk;
+        });
+
+        let isDown = false;
+
+
+        sliderContent.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX;
+            scrollLeft = sliderContent.scrollLeft;
+        });
+
+        sliderContent.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        sliderContent.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
+        sliderContent.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX;
+            const walk = (x - startX) * 2;
+            sliderContent.scrollLeft = scrollLeft - walk;
+        });
+    });
+  </script>
+</body>
+
+</html>

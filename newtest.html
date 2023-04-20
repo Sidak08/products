@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        fetch('https://raw.githubusercontent.com/<Sidak08>/<Allproducts>/<main>/<path>/<filename>.js')
+            .then(response => response.text())
+            .then(text => {
+                // parse the response text to extract the variable value
+                const variableValue = JSON.parse(text).variableName;
+
+                // use the variable value in your code
+                console.log(variableValue);
+            });
+
+    </script>
+</body>
+
+</html>

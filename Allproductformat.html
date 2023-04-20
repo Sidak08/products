@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .product-image {
+            width: 100%;
+        }
+
+        .product-name {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        .product-price {
+            color: green;
+            margin-top: 10px;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            .product {
+                flex-basis: 4%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Products</h1>
+    <div class="product-list">
+    </div>
+
+    <script>
+        var products = [
+            { name: 'Product 1', image: 'https://via.placeholder.com/200x200', price: '$10' },
+            { name: 'Product 2', image: 'https://via.placeholder.com/200x200', price: '$20' },
+            { name: 'Product 3', image: 'https://via.placeholder.com/200x200', price: '$30' },
+            { name: 'Product 4', image: 'https://via.placeholder.com/200x200', price: '$40' },
+            {
+                image: 'https://assets.zyrosite.com/YZ9MxPwN40Hxl037/screen-shot-2023-04-17-at-7.00.14-pm-mP4ZEKOgl2CV3bWn.png',
+                name: 'Womens Gift Set',
+                price: 'CA$15.99',
+                productLink: 'https://smallgifts.store/womens-gift-set-z-ofwt',
+            },
+            {
+                image: 'https://assets.zyrosite.com/YZ9MxPwN40Hxl037/screen-shot-2023-04-17-at-7.04.05-pm-YlenpVbM4ehDnMrB.png',
+                product: 'Megnetic Couple Necklace',
+                product: 'CA$9.99',
+                productLink: 'https://smallgifts.store/megnetic-couple-necklace-zgfsqe',
+            },
+        ];
+
+        var product_list = document.querySelector('.product-list');
+
+        products.forEach(function (product) {
+            var product_element = document.createElement('div');
+            product_element.className = 'product';
+            product_element.innerHTML = `
+                <img class="product-image" src="${product.image}" alt="${product.name}">
+                <div class="product-name">${product.name}</div>
+                <div class="product-price">${product.price}</div>
+            `;
+            product_list.appendChild(product_element);
+        });
+    </script>
+</body>
+
+</html>
