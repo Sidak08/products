@@ -86,9 +86,9 @@
 <body>
     <div class="product-list">
     </div>
-    <script src="https://assets.zyrosite.com/YZ9MxPwN40Hxl037/allproducts-ALp8aXrrxWuba8pR.js"></script>
+    <script src="allproducts.js"></script>
     <script defer>
-        let products = Womensproducts;
+        let products = allproducts;
 
         var product_list = document.querySelector('.product-list');
 
@@ -101,7 +101,8 @@
                 <div class="product-price">${product.price}</div>`;
             product_list.appendChild(product_element);
         });
+        console.log(mensproducts)
     </script>
 </body>
 
-</html>
+</html> 
