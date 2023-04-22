@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
-    <script>
-        fetch('https://github.com/Sidak08/products/blob/main/try2.js')
-            .then(response => response.text())
-            .then(text => {
-                // parse the response text to extract the variable value
-                const variableValue = JSON.parse(text).variableName;
+    <script> 
+   const url = 'https://raw.githubusercontent.com/Sidak08/products/main/allproducts.js';
+const token = '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'; // Replace with your own access token
 
-                // use the variable value in your code
-                console.log(variableValue);
-            });
-
+fetch(url, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+})
+  .then(response => response.text())
+  .then(data => {
+    const myArray = eval(data);
+    console.log(myArray); // use myArray as needed
+  })
+  .catch(error => console.error(error));
     </script>
 </body>
-
 </html>

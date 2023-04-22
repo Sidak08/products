@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  
+
   <style>
     * {
       padding: 0px;
@@ -184,55 +184,55 @@
       productDiv.appendChild(productText);
 
       sliderContent.appendChild(productDiv);
-        const leftArrow = document.querySelector('.arrow.left');
-        const rightArrow = document.querySelector('.arrow.right');
+      const leftArrow = document.querySelector('.arrow.left');
+      const rightArrow = document.querySelector('.arrow.right');
 
-        leftArrow.addEventListener('click', () => {
-            sliderContent.scrollLeft -= 200;
-        });
+      leftArrow.addEventListener('click', () => {
+        sliderContent.scrollLeft -= 200;
+      });
 
-        rightArrow.addEventListener('click', () => {
-            sliderContent.scrollLeft += 200;
-        });
+      rightArrow.addEventListener('click', () => {
+        sliderContent.scrollLeft += 200;
+      });
 
-        let startX;
-        let scrollLeft;
+      let startX;
+      let scrollLeft;
 
-        sliderContent.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].pageX;
-            scrollLeft = sliderContent.scrollLeft;
-        });
+      sliderContent.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].pageX;
+        scrollLeft = sliderContent.scrollLeft;
+      });
 
-        sliderContent.addEventListener('touchmove', (e) => {
-            const x = e.touches[0].pageX;
-            const walk = (x - startX) * 2;
-            sliderContent.scrollLeft = scrollLeft - walk;
-        });
+      sliderContent.addEventListener('touchmove', (e) => {
+        const x = e.touches[0].pageX;
+        const walk = (x - startX) * 2;
+        sliderContent.scrollLeft = scrollLeft - walk;
+      });
 
-        let isDown = false;
+      let isDown = false;
 
 
-        sliderContent.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX;
-            scrollLeft = sliderContent.scrollLeft;
-        });
+      sliderContent.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX;
+        scrollLeft = sliderContent.scrollLeft;
+      });
 
-        sliderContent.addEventListener('mouseleave', () => {
-            isDown = false;
-        });
+      sliderContent.addEventListener('mouseleave', () => {
+        isDown = false;
+      });
 
-        sliderContent.addEventListener('mouseup', () => {
-            isDown = false;
-        });
+      sliderContent.addEventListener('mouseup', () => {
+        isDown = false;
+      });
 
-        sliderContent.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX;
-            const walk = (x - startX) * 2;
-            sliderContent.scrollLeft = scrollLeft - walk;
-        });
+      sliderContent.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX;
+        const walk = (x - startX) * 2;
+        sliderContent.scrollLeft = scrollLeft - walk;
+      });
     });
   </script>
 </body>
