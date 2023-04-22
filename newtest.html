@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
-<body>
-    <script> 
-   const url = 'https://raw.githubusercontent.com/Sidak08/products/main/allproducts.js';
-const token = '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'; // Replace with your own access token
 
-fetch(url, {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-})
-  .then(response => response.text())
-  .then(data => {
-    const myArray = eval(data);
-    console.log(myArray); // use myArray as needed
-  })
-  .catch(error => console.error(error));
+<body>
+    <script>
+
+
+        const url = "https://api.github.com/repos/Sidak08/products/contents/allproducts.js";
+        const options = {
+            method: "GET",
+            headers: {
+                Authorization: "Bearer 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",
+                Accept: "application/vnd.github.v3.raw",
+            },
+        };
+
+        fetch(url, options)
+            .then((response) => response.text())
+            .then((data) => {
+                const array = eval("(" + data + ")").Womensproducts;
+                console.log(array);
+            });
+
+
     </script>
 </body>
+
 </html>
